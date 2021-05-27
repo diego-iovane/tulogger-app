@@ -1,22 +1,31 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {Selected} from '../../../context/context'
+import {Selected, StepsContext} from '../../../context/context'
 import {getFirestore} from '../../../firebase/firebase'
+import {handleStep} from '../utils/utils'
 import Forward from './Forward/index-forward'
 import Return from './Return/index-return'
+import {Swiper, SwiperSlide} from 'swiper/react';
+import SwiperCore, {Navigation, Pagination, Scrollbar} from 'swiper'
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
 import {
     ProductsContainer, 
     ProductsTitle,
     ProductsInner,
-    ProductsList,
+    // ProductsList,
     ProductsListViewer,
-    ProductCard,
-    productsVariants
+    // ProductCard,
+    productsVariants,
+    SlideImage
 } from './ProductoElements'
+
+SwiperCore.use([Navigation, Pagination, Scrollbar]);
 
 const Producto = () => {
 
     const db = getFirestore()
     const [prendas, setPrendas] = useState([])
+    const [steps, setSteps] = useContext(StepsContext)
     const [selected, setSelected] = useContext(Selected)
     const [slide, setSlide] = useState(0)
 
@@ -35,7 +44,10 @@ const Producto = () => {
         .catch(err => console.log(err))
     }, [])
 
-    console.log(slide)
+    const handleClick = (prenda) => {
+        setSelected({...selected, producto: prenda})
+        handleStep(steps, setSteps)
+    }
 
     return(
         <ProductsContainer
@@ -48,21 +60,38 @@ const Producto = () => {
             <ProductsInner>
                 <Return />
                 <ProductsListViewer>
-                    <ProductsList>
+                    <Swiper
+                        navigation
+                        pagination={{ clickable: true }}
+                        scrollbar={{ draggable: true }}
+                        slidesPerView={4}
+                        style={{'height': '20rem'}}
+                    >
                         {
                             prendas.length !== 0 ?
                             prendas.map(prenda => {
                                 return(
-                                    <ProductCard key={prenda.title}>
-                                        <img src={prenda.img} alt={prenda.title}/>
+                                    <SwiperSlide 
+                                        key={prenda.title}
+                                        style={{
+                                            'width': '15rem',
+                                            'display': 'flex',
+                                            'flexDirection': 'column',
+                                            'justifyContent': 'space-between',
+                                            'alignItems': 'center',
+                                            'cursor': 'pointer'
+                                        }}
+                                        onClick={() => {handleClick(prenda.title)}}
+                                    >
+                                        <SlideImage src={prenda.img} alt={prenda.title}/>
                                         <p>{prenda.title}</p>
-                                    </ProductCard>
+                                    </SwiperSlide>
                                 )
                             }) : 
                             // LOADER
                             <div>loading...</div>
                         }
-                    </ProductsList>
+                    </Swiper>
                 </ProductsListViewer>
                 <Forward slide={slide} setSlide={setSlide}/>
             </ProductsInner>

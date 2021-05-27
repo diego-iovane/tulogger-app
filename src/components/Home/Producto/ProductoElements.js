@@ -21,13 +21,14 @@ export const ProductsContainer = styled(motion.div)`
     height: 30rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     top: 6vw;
 
     h2 {
-        margin-bottom: 5vw;
+        margin-bottom: 1rem;
+        margin-top: 0;
     }
 `
 
@@ -47,20 +48,23 @@ export const ProductsListViewer = styled.div`
     overflow: hidden;
 `
 
-export const ProductsList = styled.div`
-    position: relative;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    left: ${({slide}) => slide}rem;
-`
+// export const ProductsList = styled.div`
+//     position: relative;
+//     height: 100%;
+//     margin: 0 auto;
+//     display: flex;
+// `
 
-export const ProductCard = styled(motion.div)`
-    min-width: 21rem;
-    max-width: 21rem;
+// export const ProductCard = styled(motion.div)`
+//     min-width: 21rem;
+//     max-width: 21rem;
 
-    img {
-        height: 15rem;
-        object-fit: cover;
-    }
+//     img {
+//         height: 15rem;
+//         object-fit: cover;
+//     }
+// `
+
+export const SlideImage = styled.img`
+    width: 80%;    
 `
