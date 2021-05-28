@@ -40,7 +40,7 @@ export const ProductsInner = styled(motion.div)`
     width: 85%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 `
 
 export const ProductsListViewer = styled.div`

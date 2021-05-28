@@ -11,7 +11,7 @@ import {Selected} from './context/context'
 function App() {
 
   const [steps, setSteps] = useState({
-    step: 0,
+    step: 2,
     lastStep: 0,
   })
   const [selected, setSelected] = useState({

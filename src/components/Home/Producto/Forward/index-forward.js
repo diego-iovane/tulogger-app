@@ -5,17 +5,10 @@ import {
     ForwardArrow
 } from './ForwardElements'
 
-const Forward = ({slide, setSlide}) => {
-
-    const handleClick = () => {
-        setSlide(slide * 2)
-        console.log(slide)
-    }
-
-
+const Forward = () => {
     return(
         <>
-            <ForwardContainer onClick={handleClick}>
+            <ForwardContainer>
                 <ForwardArrow>
                     <IoArrowBackCircleOutline />
                 </ForwardArrow>

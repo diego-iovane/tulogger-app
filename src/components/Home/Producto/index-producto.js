@@ -2,24 +2,21 @@ import React, {useState, useContext, useEffect} from 'react'
 import {Selected, StepsContext} from '../../../context/context'
 import {getFirestore} from '../../../firebase/firebase'
 import {handleStep} from '../utils/utils'
-import Forward from './Forward/index-forward'
-import Return from './Return/index-return'
-import {Swiper, SwiperSlide} from 'swiper/react';
-import SwiperCore, {Navigation, Pagination, Scrollbar} from 'swiper'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import SwiperCore, {Navigation} from 'swiper'
 import 'swiper/swiper.scss';
-import 'swiper/components/navigation/navigation.scss';
+import './custom.css'
+import 'swiper/components/navigation/navigation.scss'
 import {
     ProductsContainer, 
     ProductsTitle,
     ProductsInner,
-    // ProductsList,
     ProductsListViewer,
-    // ProductCard,
     productsVariants,
     SlideImage
 } from './ProductoElements'
 
-SwiperCore.use([Navigation, Pagination, Scrollbar]);
+SwiperCore.use([Navigation]);
 
 const Producto = () => {
 
@@ -27,7 +24,6 @@ const Producto = () => {
     const [prendas, setPrendas] = useState([])
     const [steps, setSteps] = useContext(StepsContext)
     const [selected, setSelected] = useContext(Selected)
-    const [slide, setSlide] = useState(0)
 
     useEffect(() => {
 
@@ -58,13 +54,28 @@ const Producto = () => {
         >
             <ProductsTitle>Producto 2</ProductsTitle>
             <ProductsInner>
-                <Return />
                 <ProductsListViewer>
                     <Swiper
                         navigation
-                        pagination={{ clickable: true }}
-                        scrollbar={{ draggable: true }}
                         slidesPerView={4}
+                        breakpoints={{
+                            "320": {
+                                "slidesPerView": 1,
+                                "spaceBetween": 0
+                            },
+                            "640": {
+                              "slidesPerView": 1,
+                              "spaceBetween": 20
+                            },
+                            "768": {
+                              "slidesPerView": 2,
+                              "spaceBetween": 40
+                            },
+                            "1024": {
+                              "slidesPerView": 3,
+                              "spaceBetween": 50
+                            }
+                          }}
                         style={{'height': '20rem'}}
                     >
                         {
@@ -89,11 +100,10 @@ const Producto = () => {
                                 )
                             }) : 
                             // LOADER
-                            <div>loading...</div>
+                            <div>loadingdfsahflajhlkfhklasjhkflhasldkhfklashdklfhalskdhfkalj...</div>
                         }
                     </Swiper>
                 </ProductsListViewer>
-                <Forward slide={slide} setSlide={setSlide}/>
             </ProductsInner>
         </ProductsContainer>
     )

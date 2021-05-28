@@ -5,16 +5,12 @@ import {
     ReturnArrow
 } from './ReturnElements'
 
-const Return = () => {
-
-    const handleReturn = () => {
-        
-    }
+const Return = ({asRef}) => {
 
     return(
-        <ReturnContainer>
+        <ReturnContainer ref={asRef}>
             <ReturnArrow>
-                <IoArrowBackCircleOutline onClick={handleReturn}/>
+                <IoArrowBackCircleOutline />
             </ReturnArrow>
         </ReturnContainer>
     )
