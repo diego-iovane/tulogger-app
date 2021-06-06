@@ -27,21 +27,26 @@ const Producto = () => {
 
     useEffect(() => {
 
-        db.collection('prendas').get()
-        .then(prendas => {
-            let array = []
-            prendas.forEach(prenda => {
-                array.push(prenda.data())
-            })
+        const unsubscribe = () => {
+                db.collection('prendas').get()
+                .then(prendas => {
+                    let array = []
+                    prendas.forEach(prenda => {
+                        array.push(prenda.data())
+                    })
+                    
+                    setPrendas(array)
             
-            setPrendas(array)
-    
-        })
-        .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
+        }
+
+        return unsubscribe()
+        
     }, [])
 
-    const handleClick = (prenda) => {
-        setSelected({...selected, producto: prenda})
+    const handleClick = (title, img, colores) => {
+        setSelected({...selected, producto: title, imagen: img, coloresDisponibles: colores })
         handleStep(steps, setSteps)
     }
 
@@ -92,7 +97,7 @@ const Producto = () => {
                                             'alignItems': 'center',
                                             'cursor': 'pointer'
                                         }}
-                                        onClick={() => {handleClick(prenda.title)}}
+                                        onClick={() => {handleClick(prenda.title, prenda.img, prenda.colores)}}
                                     >
                                         <SlideImage src={prenda.img} alt={prenda.title}/>
                                         <p>{prenda.title}</p>
@@ -100,7 +105,7 @@ const Producto = () => {
                                 )
                             }) : 
                             // LOADER
-                            <div>loadingdfsahflajhlkfhklasjhkflhasldkhfklashdklfhalskdhfkalj...</div>
+                            <div>loading...</div>
                         }
                     </Swiper>
                 </ProductsListViewer>

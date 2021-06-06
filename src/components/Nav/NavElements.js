@@ -28,6 +28,14 @@ export const Logo = styled(Link)`
     font-weight: bold;
 `
 
+export const LogoAlt = styled.a`
+    color: #D73457;
+    text-decoration: none;
+    font-size: 63px;
+    font-weight: bold;
+    cursor: pointer;
+`
+
 export const LogoImage = styled.img`
     width: 3rem;
 `

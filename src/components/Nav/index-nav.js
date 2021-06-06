@@ -1,5 +1,8 @@
-import React from 'react'
+import React, {useEffect, useState, useContext} from 'react'
+import {StepsContext} from '../../context/context'
+import {handleReturn} from '../Home/utils/utils'
 import HoverableLink from './index-hoverable-link'
+import {useLocation} from 'react-router-dom'
 import {FaWhatsappSquare} from 'react-icons/fa'
 import {SiMailDotRu} from 'react-icons/si'
 import {TiSocialInstagram} from 'react-icons/ti'
@@ -10,6 +13,7 @@ import {
     NavInner,
     LogoContainer,
     Logo,
+    LogoAlt,
     LogoImage,
     Nav,
     ContactNavContainer,
@@ -18,6 +22,22 @@ import {
 } from './NavElements'
 
 const NavBar = () => {
+
+    const {pathname} = useLocation()
+    const [isHome, setIsHome] = useState(false)
+    // eslint-disable-next-line
+    const [steps, setSteps] = useContext(StepsContext)
+
+    useEffect(() => {
+        
+        pathname === '/' ? setIsHome(true) : setIsHome(false)
+
+    })
+
+    const handleClick = () => {
+        handleReturn(0, setSteps)
+    }
+
     return(
         <NavContainer>
             <NavInner>
@@ -45,19 +65,23 @@ const NavBar = () => {
                 </ContactNavContainer>
                 <LogoContainer>
                     <LogoImage src={LogoImg} />
-                    <Logo to="/">Logger</Logo>
+                    {
+                        isHome ? 
+                        <LogoAlt onClick={handleClick}>Logger</LogoAlt>:
+                        <Logo to="/">Logger</Logo>
+                    }
                 </LogoContainer>
                 <Nav>
                     <ul>
                         <li>
-                            <HoverableLink>Técnicas</HoverableLink>
+                            <HoverableLink to="/tecnicas">Técnicas</HoverableLink>
                         </li>
                         <li>
-                            <HoverableLink>Contacto</HoverableLink>
+                            <HoverableLink to="/contacto">Contacto</HoverableLink>
 
                         </li>
                         <li>
-                            <HoverableLink>Nos</HoverableLink>
+                            <HoverableLink to="/nosotros">Nosotros</HoverableLink>
                         </li>
                     </ul>
                 </Nav>

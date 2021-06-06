@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import NavBar from './components/Nav/index-nav'
 import Home from './components/Home/index-home'
 import Trabajos from './components/Trabajos/index-trabajos'
@@ -11,16 +11,17 @@ import {Selected} from './context/context'
 function App() {
 
   const [steps, setSteps] = useState({
-    step: 2,
-    lastStep: 0,
+    step: 0,
   })
   const [selected, setSelected] = useState({
     tecnica: "",
     producto: "",
+    imagen: "",
+    coloresDisponibles: "",
     color: "",
+    cantidad: "",
+    size: "",
     ubicacion: "",
-    cantidad: 0,
-    step: 0
   })
 
   console.log(selected)
@@ -33,13 +34,13 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/trabajos">
+          <Route exact path="/trabajos">
             <Trabajos />
           </Route>
-          <Route path="/contacto">
+          <Route exact path="/contacto">
             <Contacto />
           </Route>
-          <Route path="/nos">
+          <Route exact path="/nosotros">
             <Nos />
           </Route>
         </Switch>

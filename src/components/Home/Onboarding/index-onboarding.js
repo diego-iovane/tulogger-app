@@ -19,10 +19,10 @@ const Onboarding = () => {
         >
             <OnboardingInner>
                 <OnboardingSignA>
-                    ESTAMPADOS
+                    PERSONALIZÁ TU PRENDA
                 </OnboardingSignA>   
                 <OnboardingSignB>
-                    SIMUL@ TU PRESUPUESTO
+                    CALCULÁ TU PRESUPUESTO
                 </OnboardingSignB>
                 <Start />
             </OnboardingInner>

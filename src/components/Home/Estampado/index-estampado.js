@@ -27,8 +27,8 @@ const Etampado = () => {
             title: "Serigrafía",
             tech: "serigrafia",
             properties: [
-                "Ideal para ...",
-                "Ideal para ..."
+                "Ideal para telas naturales",
+                "Adecuado p/ diseños sencillos de pocos colores"
             ]    
         },
         {

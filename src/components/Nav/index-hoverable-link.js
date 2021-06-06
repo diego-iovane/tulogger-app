@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {AnimatePresence} from 'framer-motion'
 import {NavLink, AnimHover, hoverVariants} from './NavElements'
 
-const HoverableLink = ({children}) => {
+const HoverableLink = ({children, to}) => {
 
     const [hovering, setHovering] = useState(false)
 
@@ -10,7 +10,7 @@ const HoverableLink = ({children}) => {
         <NavLink
         onHoverStart={() => setHovering(!hovering)} 
         onHoverEnd={() => setHovering(!hovering)}
-        to="/trabajos">
+        to={to}>
             <AnimatePresence>
                 {
                     hovering &&
