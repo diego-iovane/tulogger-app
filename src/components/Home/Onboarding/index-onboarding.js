@@ -19,7 +19,7 @@ const Onboarding = () => {
         >
             <OnboardingInner>
                 <OnboardingSignA>
-                    PERSONALIZÁ TU PRENDA
+                    PRENDAS PERSONALIZADAS
                 </OnboardingSignA>   
                 <OnboardingSignB>
                     CALCULÁ TU PRESUPUESTO

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import emailjs from 'emailjs-com';
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
 import {getFirestore, getFirebs} from '../../../firebase/firebase'
@@ -13,6 +14,30 @@ import {
 const ContactDetails = ({selected}) =>  {
 
     const [loader, setLoader] = useState(false)
+
+    const handleSendMail = (name, email) => {
+
+        emailjs.send("service_mvvgfmc","template_n0qpfr4",{
+            from_name: name,
+            reply_to: email,
+            prenda: selected.producto,
+            logoSize: selected.size,
+            tecnica: selected.tecnica,
+            ubicacion: selected.ubicacion,
+            color: selected.color,
+            cantidad: selected.cantidad, 
+            presupuesto: selected.total
+            }, "user_lkXkwyOGzRwkXGfGf2L5F")
+            .then(ok => {
+                console.log(ok)
+                setLoader(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setLoader(false)
+            })
+    }
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -49,7 +74,7 @@ const ContactDetails = ({selected}) =>  {
             })
             .then(() => {
                 console.log('Presupuesto procesado exitosamente')
-                setLoader(false)
+                handleSendMail(values.name, values.email)
             })
             .catch(err => console.log(err))
         }

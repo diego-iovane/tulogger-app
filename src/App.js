@@ -11,17 +11,19 @@ import {Selected} from './context/context'
 function App() {
 
   const [steps, setSteps] = useState({
-    step: 0,
+    step: 2,
   })
   const [selected, setSelected] = useState({
     tecnica: "",
     producto: "",
+    precioUnidad: 0,
     imagen: "",
-    coloresDisponibles: "",
     color: "",
+    coloresDisponibles: "",
     cantidad: "",
     size: "",
     ubicacion: "",
+    total: 0
   })
 
   console.log(selected)

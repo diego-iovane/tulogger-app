@@ -45,8 +45,15 @@ const Producto = () => {
         
     }, [])
 
-    const handleClick = (title, img, colores) => {
-        setSelected({...selected, producto: title, imagen: img, coloresDisponibles: colores })
+    const handleClick = (title, img, colores, precio) => {
+        setSelected({
+            ...selected,
+            producto: title,
+            imagen: img,
+            coloresDisponibles: colores,
+            total: precio,
+            precioUnidad: precio
+        })
         handleStep(steps, setSteps)
     }
 
@@ -70,7 +77,7 @@ const Producto = () => {
                             },
                             "640": {
                               "slidesPerView": 1,
-                              "spaceBetween": 20
+                              "spaceBetween": 0
                             },
                             "768": {
                               "slidesPerView": 2,
@@ -97,10 +104,12 @@ const Producto = () => {
                                             'alignItems': 'center',
                                             'cursor': 'pointer'
                                         }}
-                                        onClick={() => {handleClick(prenda.title, prenda.img, prenda.colores)}}
+                                        onClick={() => {
+                                            handleClick(prenda.title, prenda.img, prenda.colores, prenda.price)
+                                        }}
                                     >
                                         <SlideImage src={prenda.img} alt={prenda.title}/>
-                                        <p>{prenda.title}</p>
+                                        <p>{prenda.title} (${prenda.price})</p>
                                     </SwiperSlide>
                                 )
                             }) : 

@@ -5,6 +5,10 @@ export const NavHomeContainer = styled(motion.div)`
     width: 100%;
     height: 3rem;
     margin-top: 3rem;
+
+    @media screen and (max-width: 650px){
+        margin-top: 1vw;
+    }
 `
 
 export const NavHomeInner = styled.div`
@@ -13,6 +17,10 @@ export const NavHomeInner = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    @media screen and (max-width: 650px){
+        width: 80%;   
+    }
 `
 
 export const NavHomeItems = styled.div`
@@ -32,5 +40,9 @@ export const NavHomeItems = styled.div`
         border-radius: 0;
         ${({active}) => active && 'background: rgba(215, 53, 86, 0.8)'};
         ${({clickable}) => clickable && 'background: rgba(107, 213, 213, 0.9)'};
+    }
+
+    @media screen and (max-width: 650px){
+        font-size: 2.5vw;   
     }
 `

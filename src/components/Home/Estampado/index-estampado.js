@@ -8,6 +8,8 @@ import {
     EstampadoContainer,
     EstampadoInner,
     EstampadoCard,
+    ImgContainer,
+    DetailsContainer
 } from './EstampadoElements'
 
 const Etampado = () => {
@@ -18,17 +20,17 @@ const Etampado = () => {
             title: "Bordado",
             tech: "bordado",
             properties: [
-                "Ideal para ...",
-                "Ideal para ..."
+                "Adaptable a cualquier tipo de prenda",
+                "Diseños versátiles, sencillos o complejos"
             ]        
         },
         {
             img: serigrafiaIcon,
-            title: "Serigrafía",
+            title: "Estampado (Serigrafía)",
             tech: "serigrafia",
             properties: [
                 "Ideal para telas naturales",
-                "Adecuado p/ diseños sencillos de pocos colores"
+                "Adecuado p/ diseños de pocos colores"
             ]    
         },
         {
@@ -36,8 +38,8 @@ const Etampado = () => {
             title: "Sublimado",
             tech: "sublimado",
             properties: [
-                "Ideal para ...",
-                "Ideal para ..."
+                "Ideal para prendas grises o blancas",
+                "Ideal para diseños full color o con detalles finos"
             ]
         }
     ]
@@ -72,7 +74,7 @@ const Etampado = () => {
             animate="animate"
             exit="exit"
         >
-            <h2>Tipo de estampado 1</h2>
+            <h2>Seleccioná el tipo de personalizado</h2>
             <EstampadoInner>
                 {
                     tecnicas.length > 0 &&
@@ -81,14 +83,19 @@ const Etampado = () => {
                             <EstampadoCard 
                                 key={item.title}
                                 onClick={() => handleClick(item.tech)}
+                                whileHover={{ scale: 1.1 }}
                             >
-                                <img src={item.img} alt="icono de tecnica"/>
+                                <ImgContainer>
+                                    <img src={item.img} alt="icono de tecnica"/>
+                                </ImgContainer>
                                 <h3>{item.title}</h3>
-                                {
-                                    item.properties.map((item, index) => {
-                                        return(<p key={index}>{item}</p>)
-                                    })
-                                }
+                                <DetailsContainer>
+                                    {
+                                        item.properties.map((item, index) => {
+                                            return(<p key={index}>{item}</p>)
+                                        })
+                                    }
+                                </DetailsContainer>
                             </EstampadoCard>
                         )
                     })

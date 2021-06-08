@@ -1,5 +1,6 @@
-import React, {useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Selected, StepsContext} from '../../../context/context'
+import {calculateLogoPrice} from '../utils/utils'
 import DetallesList from './index-detalles'
 import ContactDetails from './index-contactdetails'
 import CountAnimation from './index-countanim'
@@ -16,7 +17,16 @@ import {
 const Presupuesto = () => {
 
     const [selected, setSelected] = useContext(Selected)
+    // eslint-disable-next-line
     const [steps, setSteps] = useContext(StepsContext)
+    const [total, setTotal] = useState(0)
+
+    const handleSetTotal = () => {
+
+        const logoPrice = calculateLogoPrice(selected)
+        setTotal(logoPrice + selected.precioUnidad)
+
+    }
 
     const handleReset = () => {
         setSelected({
@@ -28,10 +38,23 @@ const Presupuesto = () => {
             cantidad: "",
             size: "",
             ubicacion: "",
+            precioUnidad: 0,
+            total: 0
         })
 
         setSteps({step: 0})
     }
+
+    useEffect(() => {
+        handleSetTotal()
+    }, [])
+
+    useEffect(() => {
+        setSelected({
+            ...selected,
+            total: total
+        })
+    }, [total])
 
     return(
         <PresupuestoContainer
@@ -44,7 +67,11 @@ const Presupuesto = () => {
             <ContainerLeft>
                 <DetallesContainer>
                     <h5>
-                        <span>$</span><CountAnimation>500</CountAnimation>
+                        <span>$</span>
+                        {
+                            total !== 0 && <CountAnimation>{total}</CountAnimation>
+                        }
+                        <span>(precio por unidad)</span>
                     </h5>
                     <DetallesInner>
                         <DetallesList selected={selected}/>

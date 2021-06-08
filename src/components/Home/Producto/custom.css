@@ -16,9 +16,13 @@
 .swiper-button-prev {
     opacity: 1 !important;
     background: rgba(215, 53, 86, 0.57);;
-    height: 20rem;
-    width: 5rem;
-    color: white !important;
+    /* height: 5rem; */
+    /* width: 5rem; */
+    /* height: 50% !important; */
+    /* width: 3vw !important; */
+    /* color: white !important; */
+    color: #D73457 !important;
+    background-color: transparent !important;
     left: 0 !important;
     right: 0 !important;
     padding: 10vw 1vw !important;
@@ -27,9 +31,11 @@
 .swiper-button-next {
     opacity: 1 !important;
     background: rgba(107, 213, 213, 0.65);
-    height: 20rem;
-    width: 5rem;
-    color: white !important;
+    /* height: 1rem; */
+    /* width: 5rem; */
+    /* color: white !important; */
+    color: #D73457 !important;
+    background-color: transparent !important;
     padding: 10vw 1vw !important;
 }
 
