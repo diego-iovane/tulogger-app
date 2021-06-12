@@ -58,20 +58,20 @@ const NavBar = () => {
                         {/* eslint-disable-next-line */}
                         <Icons><a href=""><FaWhatsappSquare /></a></Icons>
                         <span>Whats => </span>
-                        <span>+5491154043433</span>
+                        <span>+5491170543029</span>
                     </ContactNavItem>
                     <ContactNavItem>
                         <Icons><span><SiMailDotRu /></span></Icons>
                         <span>e-mail => </span>
-                        <span>email@email.com</span>
+                        <span>tuloggerventas@gmail.com</span>
                     </ContactNavItem>
                     <ContactNavItem>
                         <span>Redes => </span>
                         <Icons>
                             {/* eslint-disable-next-line */}
-                            <a href=""><TiSocialInstagram /></a>
+                            <a href="https://www.instagram.com/tulogger_indumentaria/" target="_blank"><TiSocialInstagram /></a>
                             {/* eslint-disable-next-line */}
-                            <a href=""><AiFillFacebook /></a>
+                            <a href="https://www.facebook.com/Tulogger-110563974583998" target="_blank"><AiFillFacebook /></a>
                         </Icons>
                     </ContactNavItem>
                     <MobileContactNav>
@@ -87,8 +87,8 @@ const NavBar = () => {
                     <LogoImage src={LogoImg} />
                     {
                         isHome ? 
-                        <LogoAlt onClick={handleClick}>Logger</LogoAlt>:
-                        <Logo to="/">Logger</Logo>
+                        <LogoAlt onClick={handleClick}>TuLogger</LogoAlt>:
+                        <Logo to="/">TuLogger</Logo>
                     }
                 </LogoContainer>
                 <Nav>

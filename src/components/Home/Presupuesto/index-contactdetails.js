@@ -1,21 +1,34 @@
 import React, {useState} from 'react'
+import PopUp from './index-pop'
 import emailjs from 'emailjs-com';
+import {nanoid} from 'nanoid'
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
 import {getFirestore, getFirebs} from '../../../firebase/firebase'
+import {GrSend} from 'react-icons/gr'
+import {AiOutlineLoading} from 'react-icons/ai'
 import {
     ContactContainer,
     FormContainer,
     Form, 
     InputContainer,
-    Error
+    ContactText,
+    Error,
+    SendButton,
+    Loader
 } from './ContactElements'
+import { AnimatePresence } from 'framer-motion';
 
 const ContactDetails = ({selected}) =>  {
 
     const [loader, setLoader] = useState(false)
+    const [pop, setPop] = useState(false)
 
-    const handleSendMail = (name, email) => {
+    const closePop = () => {
+        setPop(false)
+    }
+    
+    const handleSendMail = (name, email, code) => {
 
         emailjs.send("service_mvvgfmc","template_n0qpfr4",{
             from_name: name,
@@ -26,11 +39,13 @@ const ContactDetails = ({selected}) =>  {
             ubicacion: selected.ubicacion,
             color: selected.color,
             cantidad: selected.cantidad, 
-            presupuesto: selected.total
+            presupuesto: selected.total,
+            codigoPresupuesto: code
             }, "user_lkXkwyOGzRwkXGfGf2L5F")
             .then(ok => {
                 console.log(ok)
                 setLoader(false)
+                // setPop(true)
             })
             .catch(err => {
                 console.log(err)
@@ -40,17 +55,10 @@ const ContactDetails = ({selected}) =>  {
 
     const formik = useFormik({
         initialValues: {
-            name: '',
             email: ''
         },
         validationSchema: Yup.object({
 
-            name: Yup.string()
-     
-              .max(15, 'Must be 15 characters or less')
-     
-              .required('Required'),
-     
             email: Yup.string().email('El e-mail no es válido').required('Required'),
      
         }),
@@ -58,10 +66,17 @@ const ContactDetails = ({selected}) =>  {
 
             setLoader(true)
 
+            let code = {}
+            code.id = nanoid(10)
+
+            // FOR TEST LOADER
+            // setTimeout(() => {
+            //     setLoader(false)
+            // }, 3000)
+
             const firebs = getFirebs() 
             const db = getFirestore()
-            db.collection('pedidos-presupuestos').add({
-                nombre: values.name,
+            db.collection('pedidos-presupuestos').doc(code.id).set({
                 email: values.email,
                 prenda: selected.producto,
                 logoSize: selected.size,
@@ -69,12 +84,13 @@ const ContactDetails = ({selected}) =>  {
                 ubicacion: selected.ubicacion,
                 color: selected.color,
                 cantidad: selected.cantidad, 
-                // presupuesto: 
+                presupuestoUnidad: selected.total,
                 fecha: firebs.firestore.Timestamp.fromDate(new Date())
             })
             .then(() => {
-                console.log('Presupuesto procesado exitosamente')
-                handleSendMail(values.name, values.email)
+                // handleSendMail(values.name, values.email, code.id)
+                setLoader(false)
+                setPop(true)
             })
             .catch(err => console.log(err))
         }
@@ -82,25 +98,9 @@ const ContactDetails = ({selected}) =>  {
 
     return(
         <ContactContainer>
-            <div>mail</div>
-            <div>whats</div>
-            <div>tel</div>
-            <div>O dejanos tus detalles para que te contactemos</div>
+            <ContactText>Dejanos tu e-mail para que te contactemos</ContactText>
             <FormContainer>
                 <Form onSubmit={formik.handleSubmit}>
-                    <InputContainer>
-                        <input 
-                            type="text" 
-                            id="name"
-                            name="name"
-                            placeholder="Name"
-                            onChange={formik.handleChange}
-                            value={formik.values.name} 
-                        />
-                        {
-                            formik.errors.name && <Error>Ingresá tu nombre o el de tu empresa</Error>
-                        }
-                    </InputContainer>
                     <InputContainer>
                         <input 
                             type="email"
@@ -110,19 +110,24 @@ const ContactDetails = ({selected}) =>  {
                             onChange={formik.handleChange}
                             value={formik.values.email}
                         />
-                        {
-                            formik.errors.email && <Error>Ingresá un e-mail para que podamos contactarte</Error>
-                        }
                     </InputContainer>
-                    <button type="submit">
+                    <SendButton type="submit">
                         {
                             loader ?
-                            "..." :
-                            "Enviar"
+                            <Loader><AiOutlineLoading /></Loader> :
+                            <GrSend />
                         }
-                    </button>
+                    </SendButton>
                 </Form>
             </FormContainer>
+            <AnimatePresence>
+                {
+                    pop &&
+                    <PopUp handleClose={closePop}>
+                        <p>Gracias por contactarnos. En breve vamos a enviarte un mensaje.</p>
+                    </PopUp>
+                }
+            </AnimatePresence>
         </ContactContainer>
     )
 }

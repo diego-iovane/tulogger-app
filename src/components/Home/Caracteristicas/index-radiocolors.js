@@ -9,15 +9,21 @@ const RadioContainer = styled.div`
     h3, p {
         margin: 0;
     }
+
+    p {
+        @media screen and (max-width: 1050px) {
+            font-size: calc(.2rem + .9vw);
+        }
+    }
 `
 
 const RadioInner = styled.div`
     display: flex;
+    margin-bottom: 1rem;
 `
 
 const RadioLabel = styled.label`
     input {
-        // display: none;
         opacity: 0;
         pointer-events: none;
         cursor: default;
@@ -37,6 +43,11 @@ const RadioButton = styled.div`
     box-sizing: border-box;
     margin: .2rem;
     cursor: pointer;
+
+    @media screen and (max-width: 650px) {
+        width: calc(.5rem + 4vw);
+        height: calc(.5rem + 4vw);
+    }
 `
 
 

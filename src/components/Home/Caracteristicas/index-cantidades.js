@@ -1,14 +1,17 @@
 import React, {useEffect, useContext} from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import {Selected} from '../../../context/context'
 
 
 const CantidadesContainer = styled.div``
 
-const CantidadesInner = styled.div``
+const CantidadesInner = styled.div`
+
+`
 
 const Title = styled.h3`
     margin: 0;
+    margin-bottom: 1rem;
 `
 
 const Selector = styled.select`
@@ -17,6 +20,9 @@ const Selector = styled.select`
     border-right: none;
     border-bottom: 2px solid black;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
 `
 
 const Cantidades = () => {

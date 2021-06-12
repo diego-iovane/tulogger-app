@@ -4,14 +4,19 @@ import {calculateLogoPrice} from '../utils/utils'
 import DetallesList from './index-detalles'
 import ContactDetails from './index-contactdetails'
 import CountAnimation from './index-countanim'
+import ContactoWhats from './index-contactowhats'
 import {
     presupuestoVariants,
     PresupuestoContainer,
+    PresupuestoInner,
     ContainerLeft,
     ContainerRight,
     DetallesContainer,
     DetallesInner,
-    ResetBudget
+    DetallesImg,
+    Counter,
+    CounterContainer,
+    // ResetBudget
 } from './PresupuestoElements'
 
 const Presupuesto = () => {
@@ -26,23 +31,6 @@ const Presupuesto = () => {
         const logoPrice = calculateLogoPrice(selected)
         setTotal(logoPrice + selected.precioUnidad)
 
-    }
-
-    const handleReset = () => {
-        setSelected({
-            tecnica: "",
-            producto: "",
-            imagen: "",
-            coloresDisponibles: "",
-            color: "",
-            cantidad: "",
-            size: "",
-            ubicacion: "",
-            precioUnidad: 0,
-            total: 0
-        })
-
-        setSteps({step: 0})
     }
 
     useEffect(() => {
@@ -64,25 +52,30 @@ const Presupuesto = () => {
             exit="exit"
         >
             <h2>Presupuesto</h2>
-            <ContainerLeft>
-                <DetallesContainer>
-                    <h5>
-                        <span>$</span>
-                        {
-                            total !== 0 && <CountAnimation>{total}</CountAnimation>
-                        }
-                        <span>(precio por unidad)</span>
-                    </h5>
-                    <DetallesInner>
-                        <DetallesList selected={selected}/>
-                    </DetallesInner>
-                </DetallesContainer>
-            </ContainerLeft>
-            <ContainerRight>
-                <p>Contactame para materializar este proyecto</p>
-                <ContactDetails selected={selected}/>
-            </ContainerRight>
-            <ResetBudget onClick={handleReset}>Hacer otro presupuesto</ResetBudget>
+            <PresupuestoInner>
+                <ContainerLeft>
+                    <DetallesContainer>
+                        <CounterContainer>
+                            <Counter>
+                            $
+                            {
+                                total !== 0 && <CountAnimation>{total}</CountAnimation>
+                            }
+                            </Counter>
+                            <p>(precio por unidad)</p>
+                        </CounterContainer>
+                        <DetallesInner>
+                            <DetallesImg src={selected.imagen} alt="detalles producto presupuesto"/>
+                            <DetallesList selected={selected}/>
+                        </DetallesInner>
+                    </DetallesContainer>
+                </ContainerLeft>
+                <ContainerRight>
+                    <ContactDetails selected={selected}/>
+                    <ContactoWhats />
+                </ContainerRight>
+                {/* <ResetBudget onClick={handleReset}>Hacer otro presupuesto</ResetBudget> */}
+            </PresupuestoInner>
         </PresupuestoContainer>
     )
 }

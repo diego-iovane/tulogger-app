@@ -4,9 +4,7 @@ const easeOutQuad = t => t * ( 2 - t );
 const frameDuration = 1000 / 60;
 
 const CountAnimation = ( { children, duration = 800 } ) => {
-
-	console.log(children)
-
+	
 	const countTo = parseInt( children, 10 );
 	const [ count, setCount ] = useState( 0 );
 

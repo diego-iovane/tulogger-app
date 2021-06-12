@@ -27,7 +27,7 @@ const Etampado = () => {
         {
             img: serigrafiaIcon,
             title: "Estampado (Serigrafía)",
-            tech: "serigrafia",
+            tech: "estampado",
             properties: [
                 "Ideal para telas naturales",
                 "Adecuado p/ diseños de pocos colores"

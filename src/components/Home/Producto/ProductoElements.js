@@ -23,11 +23,10 @@ export const ProductsContainer = styled(motion.div)`
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    top: 6vw;
 
     h2 {
-        margin-bottom: 1rem;
-        margin-top: 0;
+        margin-bottom: 3rem;
+        margin-top: 1rem;
     }
 `
 
@@ -48,7 +47,6 @@ export const ProductsListViewer = styled.div`
 `
 
 export const SlideImage = styled.img`
-    // width: 60%;    
     max-height: 16rem;
     object-fit: contain;
 `

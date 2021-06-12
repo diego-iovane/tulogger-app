@@ -6,6 +6,7 @@ import RadioColors from './index-radiocolors'
 import Cantidades from './index-cantidades'
 import LogoSize from './index-logosize'
 import LogoPosition from './index-logoposition'
+import {GrFormNext} from 'react-icons/gr'
 import {
     caracteristicasVariants,
     CaracContainer,
@@ -72,7 +73,7 @@ const Caracteristicas = () => {
                         animate="animate"
                         exit="exit"
                         onClick={handleClick}
-                    >-></NextButton>
+                    ><GrFormNext /></NextButton>
                 }
             </AnimatePresence>
         </CaracContainer>

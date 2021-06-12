@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import NavBar from './components/Nav/index-nav'
 import Home from './components/Home/index-home'
-import Trabajos from './components/Trabajos/index-trabajos'
-import Contacto from './components/Contacto/index-contacto'
+import Tecnicas from './components/Tecnicas/index-tecnicas'
 import Nos from './components/Nos/index-nos'
 import {Switch, Route} from  'react-router-dom'
 import {StepsContext} from './context/context'
@@ -11,9 +10,20 @@ import {Selected} from './context/context'
 function App() {
 
   const [steps, setSteps] = useState({
-    step: 2,
+    step: 0,
   })
   const [selected, setSelected] = useState({
+    // tecnica: "estampado",
+    // producto: "Buzo Algodon Canguro",
+    // precioUnidad: 775,
+    // imagen: "https://firebasestorage.googleapis.com/v0/b/seba-app.appspot.com/o/prendasImages%2Fbuzo-algodon-cangurojpg.jpg?alt=media&token=cceac1fc-7b64-419d-a003-8513a4bdaec4",
+    // color: "azul-francia",
+    // coloresDisponibles: "",
+    // cantidad: "A",
+    // size: "small",
+    // ubicacion: "dorso",
+    // total: 0
+
     tecnica: "",
     producto: "",
     precioUnidad: 0,
@@ -36,11 +46,8 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/trabajos">
-            <Trabajos />
-          </Route>
-          <Route exact path="/contacto">
-            <Contacto />
+          <Route exact path="/tecnicas">
+            <Tecnicas />
           </Route>
           <Route exact path="/nosotros">
             <Nos />

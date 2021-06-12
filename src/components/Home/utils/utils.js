@@ -29,6 +29,23 @@ export const handleComplete = (selected, setNextButton) => {
 
 }
 
+// export const handleReset = (setSelected, setSteps) => {
+//     setSelected({
+//         tecnica: "",
+//         producto: "",
+//         imagen: "",
+//         coloresDisponibles: "",
+//         color: "",
+//         cantidad: "",
+//         size: "",
+//         ubicacion: "",
+//         precioUnidad: 0,
+//         total: 0
+//     })
+
+//     setSteps({step: 0})
+// }
+
 export const calculateLogoPrice = (selected) => {
 
     let precioLogo = 0

@@ -28,10 +28,11 @@ const Producto = () => {
     useEffect(() => {
 
         const unsubscribe = () => {
-                db.collection('prendas').get()
+                db.collection('prendas').where("tecnica", "array-contains", selected.tecnica).get()
                 .then(prendas => {
                     let array = []
                     prendas.forEach(prenda => {
+                        console.log('aksjhfdlkjasdhs')
                         array.push(prenda.data())
                     })
                     
@@ -64,7 +65,7 @@ const Producto = () => {
             animate="animate"
             exit="exit"
         >
-            <ProductsTitle>Producto 2</ProductsTitle>
+            <ProductsTitle>Ahora elegí tu prenda</ProductsTitle>
             <ProductsInner>
                 <ProductsListViewer>
                     <Swiper
@@ -109,7 +110,7 @@ const Producto = () => {
                                         }}
                                     >
                                         <SlideImage src={prenda.img} alt={prenda.title}/>
-                                        <p>{prenda.title} (${prenda.price})</p>
+                                        <p>{prenda.title}</p>
                                     </SwiperSlide>
                                 )
                             }) : 

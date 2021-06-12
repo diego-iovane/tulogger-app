@@ -6,8 +6,8 @@ export const NavHomeContainer = styled(motion.div)`
     height: 3rem;
     margin-top: 3rem;
 
-    @media screen and (max-width: 650px){
-        margin-top: 1vw;
+    @media screen and (max-width: 1050px) {
+        margin-top: .5vw;
     }
 `
 
@@ -18,7 +18,7 @@ export const NavHomeInner = styled.div`
     align-items: center;
     justify-content: space-around;
 
-    @media screen and (max-width: 650px){
+    @media screen and (max-width: 650px) {
         width: 80%;   
     }
 `
